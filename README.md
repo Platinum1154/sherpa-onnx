@@ -1,3 +1,49 @@
+
+
+
+现在直接跑：
+
+cd C:\Users\ADMIN\Desktop\sherpa-onnx
+uv sync
+uv run python python-api-examples/xiaotu-assistant.py
+如果麦克风不对：
+
+uv run python python-api-examples/xiaotu-assistant.py --list-devices
+uv run python python-api-examples/xiaotu-assistant.py --device 1
+我已经实测通过两条关键链路：
+
+
+
+
+
+
+
+uv run python python-api-examples/xiaotu-wakeup.py --device 1
+
+
+
+
+
+
+现在可以直接这样跑：
+
+cd C:\Users\ADMIN\Desktop\sherpa-onnx
+uv sync
+uv run python python-api-examples/xiaotu-wakeup.py
+首次运行会自动下载中文 KWS 模型到 models/，默认唤醒词已经固定成“小涂小涂”，定义在 keywords/xiaotu_xiaotu.txt。如果默认麦克风不对，先执行：
+
+uv run python python-api-examples/xiaotu-wakeup.py --list-devices
+然后再用例如：
+
+uv run python python-api-examples/xiaotu-wakeup.py --device 1
+我已经补好了 uv 工程配置 pyproject.toml，把 Python 固定到 3.11，并显式锁定了 sherpa-onnx 和 sherpa-onnx-core。新增的启动脚本 python-api-examples/xiaotu-wakeup.py 会自动下载模型、处理 Windows 下 onnxruntime.dll 冲突，并支持 --wave 文件验证模式。
+
+我已经实测跑通了文件模式：
+
+uv run python python-api-examples/xiaotu-wakeup.py --wave xiaotu_tts.wav
+输出为 Detected: 小涂小涂。麦克风实时模式这边也已经确认能正常枚举音频设备，但最后这一步需要你对着麦克风实际说一次“小涂小涂”做现场确认。
+
+
  ### Supported functions
 
 |Speech recognition| [Speech synthesis][tts-url] | [Source separation][ss-url] |

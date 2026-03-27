@@ -1,0 +1,14 @@
+[project]
+name = "sherpa-onnx-xiaotu-quickstart"
+version = "0.1.0"
+description = "Quick uv-based wake-word demo for sherpa-onnx on Windows"
+requires-python = ">=3.11,<3.12"
+dependencies = [
+  "numpy>=2.4.3",
+  "sherpa-onnx==1.12.34",
+  "sherpa-onnx-core==1.12.34",
+  "sounddevice>=0.5.5",
+]
+
+[tool.uv]
+package = false
